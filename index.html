@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Cryptography Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="card header-card">
+        <h1>Browser Cryptography Dashboard</h1>
+    </div>
+    
+    <div class="card">
+        <h2>1. Text Encryption & Decryption</h2>
+        <div class="form-group">
+            <select id="algo">
+                <option value="vigenere">Vigenere Cipher</option>
+                <option value="xor">XOR Operation</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <textarea id="textInput" rows="2" placeholder="Type plain text or cipher text here..."></textarea>
+        </div>
+        <div class="form-group">
+            <input type="text" id="textKey" placeholder="Enter text key">
+        </div>
+        <div class="btn-group">
+            <button class="btn encrypt-btn" onclick="sendTextToPython('encrypt')">Encrypt Text 🔒</button>
+            <button class="btn decrypt-btn" onclick="sendTextToPython('decrypt')">Decrypt Text 🔓</button>
+        </div>
+        <div class="result-box" id="textResultContainer">
+            <div class="result-header">
+                <strong>Result Output:</strong>
+                <button id="copyBtn" onclick="copyToClipboard()">Copy 📋</button>
+            </div>
+            <p id="textResultValue"></p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>2. Image & Video Encryption / Decryption (XOR)</h2>
+        <div class="form-group">
+            <label>Numerical XOR Key (0 - 255):</label>
+            <input type="number" id="mediaKey" value="123" min="0" max="255">
+        </div>
+        <div class="form-group">
+            <button class="btn media-btn" onclick="document.getElementById('fileChooser').click()">Choose Image/Video File 📁</button>
+            <input type="file" id="fileChooser" style="display: none;" onchange="uploadAndProcessMedia()">
+        </div>
+        <div class="result-box" id="mediaResultContainer">
+            <strong>System Process Status:</strong>
+            <p id="mediaResultValue"></p>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
